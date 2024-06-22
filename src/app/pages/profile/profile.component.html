@@ -1,0 +1,53 @@
+<mat-card class="text-center padding">
+  <!-- Below line is strictly used only for testing  -->
+  <!-- {{ user | json }} -->
+  <div>
+    <b><h1>Your Profile Details</h1></b>
+  </div>
+  <mat-card-content>
+    <div class="bootstrap-wrapper">
+      <div class="container">
+        <div class="container">
+          <img
+            class="profile-image"
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+            alt=""
+          />
+          <h1 class="mt10 capitalize">
+            {{ user.firstName }} {{ user.lastName }}
+          </h1>
+        </div>
+        <div class="row">
+          <div class="col-md-10 offset-md-1">
+            <table class="table">
+              <tr *ngIf="user.username">
+                <td>UserName</td>
+                <td>{{ user.username }}</td>
+              </tr>
+              <tr *ngIf="user.userId">
+                <td>ID</td>
+                <td>QuizMania{{ user.userId }}</td>
+              </tr>
+              <tr *ngIf="user.phone">
+                <td>Phone Number</td>
+                <td>{{ user.phone }}</td>
+              </tr>
+              <tr *ngIf="user.authorities[0].authority">
+                <td>Role</td>
+                <td>{{ user.authorities[0].authority }}</td>
+              </tr>
+              <tr *ngIf="user.enabled">
+                <td>Status</td>
+                <td>{{ user.enabled ? "ACTIVE" : "NOTACTIVE" }}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mt20">
+      <button mat-raised-button class="text-center mr20">UPDATE</button>
+      <button mat-raised-button disabled>SHARE</button>
+    </div>
+  </mat-card-content>
+</mat-card>

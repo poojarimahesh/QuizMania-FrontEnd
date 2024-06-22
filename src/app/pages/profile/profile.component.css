@@ -1,0 +1,24 @@
+.text-center{
+    text-align: center;
+}
+.padding{
+    padding: 10px;;
+}
+.profile-image{
+    border-radius: 50%;
+    max-width: 200px;
+    max-height: 200px;
+    border: 2px solid #3f51b5;
+}
+.table{
+    width:100%;
+    /* border: .5px solid #e2e2e2; */
+    border-collapse:collapse;
+}
+.table tr td{
+    padding: 10px 20px;
+    border: .5px solid #e2e2e2;
+}
+.capitalize{
+    text-transform: capitalize;
+  }

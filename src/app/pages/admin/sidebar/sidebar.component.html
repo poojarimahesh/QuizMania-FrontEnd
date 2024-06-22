@@ -1,0 +1,52 @@
+<mat-card class="text-center">
+  <mat-action-list>
+    <div mat-subheader pl10>
+      <h2><b>Menu</b></h2>
+    </div>
+    <!-- <button mat-list-item routerLink="/admin">
+      <mat-icon matListItemIcon>home</mat-icon>Home
+    </button> -->
+    <button mat-list-item routerLink="/admin/profile">
+      <mat-icon matListItemIcon>account_circle</mat-icon>Profile
+    </button>
+    <button mat-list-item routerLink="/admin/categories/0">
+      <mat-icon matListItemIcon>list</mat-icon>Categories
+    </button>
+    <button mat-list-item routerLink="/admin/add-category">
+      <mat-icon matListItemIcon>add_circle</mat-icon>Add Categories
+    </button>
+    <button mat-list-item routerLink="/admin/quizzes">
+      <mat-icon matListItemIcon>quiz</mat-icon>Quizzes
+    </button>
+    <button mat-list-item routerLink="/admin/add-quiz">
+      <mat-icon matListItemIcon>add</mat-icon>Add Quiz
+    </button>
+    <button mat-list-item routerLink="/admin/profile">
+      <mat-icon matListItemIcon>logout</mat-icon>Logout
+    </button>
+  </mat-action-list>
+</mat-card>
+
+<mat-card class="text-center" style="margin-top: 10%">
+  <mat-action-list class="example-list-wrapping">
+    <div mat-subheader pl10>
+      <h2><b>Result</b></h2>
+    </div>
+    <button mat-list-item routerLink="/admin/results/user/0/quiz/0/sortBy/date">
+      <mat-icon matListItemIcon>task</mat-icon>ALL Results
+    </button>
+  </mat-action-list>
+  <!-- Below line is strictly used only for testing  -->
+  <!-- {{ categories | json }} -->
+</mat-card>
+
+<mat-card class="text-center" style="margin-top: 10%">
+  <mat-action-list class="example-list-wrapping">
+    <button mat-list-item routerLink="/admin/leaderboard/0">
+      <mat-icon matListItemIcon>leaderboard</mat-icon>
+      <h2 style="margin-top: 15px"><b>Leaderboard</b></h2>
+    </button>
+  </mat-action-list>
+  <!-- Below line is strictly used only for testing  -->
+  <!-- {{ categories | json }} -->
+</mat-card>

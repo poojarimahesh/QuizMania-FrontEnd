@@ -1,0 +1,121 @@
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <div class="row" *ngIf="isAllResultPage">
+      <div class="col-md-10">
+        <h1 class="mt20 text-center"><b>Previous ALL Results</b></h1>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w100">
+              <mat-label>Select User</mat-label>
+              <mat-select [(ngModel)]="userId">
+                <mat-option [value]="0">ALL User</mat-option>
+                <mat-option *ngFor="let user of allUsers" [value]="user.userId">
+                  {{ user.username }} : {{ user.firstName }} {{ user.lastName }}
+                </mat-option>
+              </mat-select>
+              <mat-hint>UserName : firstName LastName</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w100">
+              <mat-label>Select Quiz</mat-label>
+              <mat-select [(ngModel)]="quizIdFromList">
+                <mat-option [value]="0">ALL Quizzes</mat-option>
+                <mat-option *ngFor="let quiz of allQuizzes" [value]="quiz.qid">
+                  {{ quiz.title }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <h2 class="mt20 text-center" style="margin-left: -5%">
+          <b>Get Result By</b>
+        </h2>
+        <button
+          mat-raised-button
+          class="mt10 mr10"
+          color="accent"
+          [routerLink]="
+            '/admin/results/user/' +
+            userId +
+            '/quiz/' +
+            quizIdFromList +
+            '/sortBy/date'
+          "
+        >
+          Date
+        </button>
+        <button
+          mat-raised-button
+          class="mt10"
+          color="accent"
+          [routerLink]="
+            '/admin/results/user/' +
+            userId +
+            '/quiz/' +
+            quizIdFromList +
+            '/sortBy/marks'
+          "
+        >
+          Marks
+        </button>
+      </div>
+    </div>
+    <div class="row mt20">
+      <div class="col-md-12">
+        <h2 class="text-center">
+          Sorted by <b>{{ sortBy }}</b>
+        </h2>
+      </div>
+      
+      <div
+        [className]="isAllResultPage ? 'col-md-6' : 'col-md-6'"
+        *ngFor="let result of results"
+      >
+        <mat-card class="mb10">
+          <mat-card-content>
+            <h3>
+              <div class="text-center">
+                <b>Result : {{ result.id }}</b>
+              </div>
+
+              Date : <b>{{ result.date.substring(0, 10) }}</b>
+              <br />
+              Time : <b>{{ result.date.substring(11) }}</b
+              ><br />
+              Quiz Attempted : <b>{{ result.quiz.title }}</b
+              ><br />
+              User Attempted :
+              <b
+                >{{ result.user.username }} : {{ result.user.firstName }}
+                {{ result.user.lastName }}</b
+              ><br />
+              No. of Attempt : <b>{{ result.noOfAttempts }}</b
+              ><br />
+              Marks Obtained : <b>{{ result.marksObtained }}</b
+              ><br />
+              Questions Attempted : <b>{{ result.noOfQuestionsAttempted }}</b
+              ><br />
+              Correct Answers : <b>{{ result.correctAnswer }}</b
+              ><br />
+              <b>Marks Obtained : {{ result.marksObtained }}</b
+              ><br />
+            </h3>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-md-12" *ngIf="results.length == 0">
+        <mat-card>
+          <mat-card-content>
+            <h3>
+              You have <b>Not Yet Attempted</b> this Quiz
+            </h3></mat-card-content
+          >
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

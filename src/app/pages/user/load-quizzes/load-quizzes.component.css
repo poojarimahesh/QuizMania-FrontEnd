@@ -1,0 +1,15 @@
+.quiz-logo {
+    background-image: url('/assets/quiz.png');
+    background-size:cover;
+    
+  }
+.truncate{
+    overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+.accent{
+  color:"accent!important";
+}

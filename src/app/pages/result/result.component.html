@@ -1,0 +1,69 @@
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <h1 class="mt20 text-center"><b>Previous ALL Results</b></h1>
+    <div class="row" *ngIf="isAllResultPage">
+      <div class="col-md-10">
+        <mat-form-field appearance="outline" class="w100" placeholder="ALL">
+          <mat-label>Select Quiz</mat-label>
+          <mat-select [(ngModel)]="quizIdFromList" name="">
+            <mat-option [value]="0">ALL Quizzes</mat-option>
+            <mat-option *ngFor="let quiz of activeQuizzes" [value]="quiz.qid" >
+              {{ quiz.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-2 mt10">
+        <button
+          mat-raised-button
+          color="accent"
+          [routerLink]="'/user-dashboard/results/' + quizIdFromList"
+        >
+          Get Result
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        [className]="isAllResultPage ? 'col-md-6' : 'col-md-12'"
+        *ngFor="let result of results"
+      >
+        <mat-card class="mb10">
+          <mat-card-content>
+            <h3>
+              <div class="text-center">
+                <b>Result : {{ result.id }}</b>
+              </div>
+
+              Date : <b>{{ result.date.substring(0, 10) }}</b>
+              <br />
+              Time : <b>{{ result.date.substring(11) }}</b
+              ><br />
+              Quiz Attempted : <b>{{ result.quiz.title }}</b
+              ><br />
+              No. of Attempt : <b>{{ result.noOfAttempts }}</b
+              ><br />
+              Marks Obtained : <b>{{ result.marksObtained }}</b
+              ><br />
+              Questions Attempted : <b>{{ result.noOfQuestionsAttempted }}</b
+              ><br />
+              Correct Answers : <b>{{ result.correctAnswer }}</b
+              ><br />
+              <b>Marks Obtained : {{ result.marksObtained }}</b
+              ><br />
+            </h3>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-md-12" *ngIf="results.length == 0">
+        <mat-card>
+          <mat-card-content>
+            <h3>
+              You have <b>Not Yet Attempted</b> this Quiz
+            </h3></mat-card-content
+          >
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <h1 class="mt20 text-center"><b>LEADERBOARD</b></h1>
+    <div class="row">
+      <div class="col-md-10">
+        <mat-form-field appearance="outline" class="w100" placeholder="ALL">
+          <mat-label>Select Quiz</mat-label>
+          <mat-select [(ngModel)]="quizIdFromList" name="">
+            <mat-option *ngFor="let quiz of activeQuizzes" [value]="quiz.qid">
+              {{ quiz.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+      </div>
+      <div class="col-md-2 mt10">
+        <button
+          mat-raised-button
+          color="accent"
+          [routerLink]="'/admin/leaderboard/' + quizIdFromList"
+        >
+          Get Leaderboard
+        </button>
+      </div>
+    </div>
+    <div class="row" >
+      <div class="col-md-12" [hidden]="toHide" >
+       
+        <table mat-table [dataSource]="dataSource" matSort  class="mat-elevation-z8">
+          <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+            <ng-container matColumnDef="rank">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header >Rank No.</th>
+            <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+            </ng-container>
+           
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header >Date</th>
+            <td mat-cell *matCellDef="let element">{{ element.date.substring(0, 10) }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="time">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header >Time</th>
+            <td mat-cell *matCellDef="let element">{{ element.date.substring(11) }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="quizAttempted">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header >Quiz Attempted</th>
+            <td mat-cell *matCellDef="let element">
+              <b>{{ element.quiz.title }}</b>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="userAttempted">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header >User Attempted</th>
+            <td mat-cell *matCellDef="let element">
+              <b> {{ element.user.username }} : {{element.user.firstName}} {{element.user.lastName}}</b>
+            </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="noOfAttempt">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header >No Of Attempt</th>
+            <td mat-cell *matCellDef="let element">
+              <b>{{ element.noOfAttempts }}</b>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="questionsAttempted">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header >Questions Attempted</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.noOfQuestionsAttempted }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="correctAnswers">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header >Correct Answers</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.correctAnswer }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="marksObtained">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header >Marks Obtained</th>
+            <td mat-cell *matCellDef="let element">
+              <b>{{ element.marksObtained }}</b>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" 
+                 showFirstLastButtons
+                 [pageSize]="5"                 
+                 >
+  </mat-paginator>
+      </div>
+      <div class="col-md-12" *ngIf="(results.length == 0 && !toHide)">
+        <mat-card>
+          <mat-card-content>
+            <h3 *ngIf="(quizIdFromList!=0)"><b>No One Attempted</b> this Quiz Yet</h3>
+            <!-- <h3 *ngIf="(quizIdFromList==0)">Please <b>select Quiz</b> from above dropdown</h3> -->
+            </mat-card-content
+          >
+          
+        </mat-card>
+      </div>
+      <div class="col-md-12" *ngIf="toHide">
+        <mat-card>
+          <mat-card-content>
+            <h3>
+              <b>Please Select Quiz from DROP Down</b>
+            </h3></mat-card-content
+          >
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

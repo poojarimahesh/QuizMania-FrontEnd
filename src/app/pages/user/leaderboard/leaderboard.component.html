@@ -1,0 +1,185 @@
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <h1 class="mt20 text-center"><b>LEADERBOARD</b></h1>
+    <div class="row">
+      <div class="col-md-10">
+        <mat-form-field appearance="outline" class="w100" placeholder="ALL">
+          <mat-label>Select Quiz</mat-label>
+          <mat-select [(ngModel)]="quizIdFromList" name="">
+            <mat-option *ngFor="let quiz of activeQuizzes" [value]="quiz.qid">
+              {{ quiz.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-2 mt10">
+        <button
+          mat-raised-button
+          color="accent"
+          [routerLink]="'/user-dashboard/leaderboard/' + quizIdFromList"
+        >
+          Get Leaderboard
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4" *ngIf="results[0]">
+        <mat-card class="mb10">
+          <mat-card-content>
+            <div class="text-center">
+              <h2><b>First Position</b></h2>
+            </div>
+            <!-- <div class="result-flex"> -->
+            <div class="result-second-col" style="margin: auto">
+              <img src="/assets/Gold-Cup.png" width="100%" height="100%" />
+            </div>
+            <!-- <div class="result-first-col"> -->
+            <div>
+              <h3>
+                User Attempted :
+                <b
+                  >{{ results[0].user.username }} :
+                  {{ results[0].user.firstName }}
+                  {{ results[0].user.lastName }}</b
+                ><br />
+                Result : <b>{{ results[0].id }}</b
+                ><br />
+                Date : <b>{{ results[0].date.substring(0, 10) }}</b>
+                <br />
+                Time : <b>{{ results[0].date.substring(11) }}</b
+                ><br />
+                Quiz Attempted : <b>{{ results[0].quiz.title }}</b
+                ><br />
+
+                No. of Attempt : <b>{{ results[0].noOfAttempts }}</b
+                ><br />
+                Marks Obtained : <b>{{ results[0].marksObtained }}</b
+                ><br />
+                Questions Attempted :
+                <b>{{ results[0].noOfQuestionsAttempted }}</b
+                ><br />
+                Correct Answers : <b>{{ results[0].correctAnswer }}</b
+                ><br />
+                <b>Marks Obtained : {{ results[0].marksObtained }}</b
+                ><br />
+              </h3>
+            </div>
+
+            <!-- </div> -->
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-md-4" *ngIf="results[1]">
+        <mat-card class="mb10">
+          <mat-card-content>
+            <div class="text-center">
+              <h2><b>Second Position</b></h2>
+            </div>
+            <!-- <div class="result-flex"> -->
+            <div class="result-second-col" style="margin: auto">
+              <img src="/assets/Silver-Cup.png" width="100%" height="100%" />
+            </div>
+            <!-- <div class="result-first-col"> -->
+            <div>
+              <h3>
+                User Attempted :
+                <b
+                  >{{ results[1].user.username }} :
+                  {{ results[1].user.firstName }}
+                  {{ results[1].user.lastName }}</b
+                ><br />
+                Result : <b>{{ results[1].id }}</b
+                ><br />
+                Date : <b>{{ results[1].date.substring(0, 10) }}</b>
+                <br />
+                Time : <b>{{ results[1].date.substring(11) }}</b
+                ><br />
+                Quiz Attempted : <b>{{ results[1].quiz.title }}</b
+                ><br />
+
+                No. of Attempt : <b>{{ results[1].noOfAttempts }}</b
+                ><br />
+                Marks Obtained : <b>{{ results[1].marksObtained }}</b
+                ><br />
+                Questions Attempted :
+                <b>{{ results[1].noOfQuestionsAttempted }}</b
+                ><br />
+                Correct Answers : <b>{{ results[1].correctAnswer }}</b
+                ><br />
+                <b>Marks Obtained : {{ results[1].marksObtained }}</b
+                ><br />
+              </h3>
+            </div>
+
+            <!-- </div> -->
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-md-4" *ngIf="results[2]">
+        <mat-card class="mb10">
+          <mat-card-content>
+            <div class="text-center">
+              <h2><b>Third Position</b></h2>
+            </div>
+            <!-- <div class="result-flex"> -->
+            <div class="result-second-col" style="margin: auto">
+              <img src="/assets/Bronze-Cup.png" width="100%" height="100%" />
+            </div>
+            <!-- <div class="result-first-col"> -->
+            <div>
+              <h3>
+                User Attempted :
+                <b
+                  >{{ results[2].user.username }} :
+                  {{ results[2].user.firstName }}
+                  {{ results[2].user.lastName }}</b
+                ><br />
+                Result : <b>{{ results[2].id }}</b
+                ><br />
+                Date : <b>{{ results[2].date.substring(0, 10) }}</b>
+                <br />
+                Time : <b>{{ results[2].date.substring(11) }}</b
+                ><br />
+                Quiz Attempted : <b>{{ results[2].quiz.title }}</b
+                ><br />
+
+                No. of Attempt : <b>{{ results[2].noOfAttempts }}</b
+                ><br />
+                Marks Obtained : <b>{{ results[2].marksObtained }}</b
+                ><br />
+                Questions Attempted :
+                <b>{{ results[2].noOfQuestionsAttempted }}</b
+                ><br />
+                Correct Answers : <b>{{ results[2].correctAnswer }}</b
+                ><br />
+                <b>Marks Obtained : {{ results[2].marksObtained }}</b
+                ><br />
+              </h3>
+            </div>
+
+            <!-- </div> -->
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div
+        class="col-md-12"
+        *ngIf="results.length == 0 && displaymessage == false"
+      >
+        <mat-card>
+          <mat-card-content>
+            <h3><b>No One Attempted</b> this Quiz Yet</h3></mat-card-content
+          >
+        </mat-card>
+      </div>
+      <div class="col-md-12" *ngIf="displaymessage">
+        <mat-card>
+          <mat-card-content>
+            <h3>
+              <b>Select Quiz from DROP Down</b>
+            </h3></mat-card-content
+          >
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

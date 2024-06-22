@@ -1,0 +1,69 @@
+<!-- <mat-card class="ml20">
+  <h1 class="ml20 mt20">All categories</h1>
+  <mat-list class="ml20">
+    <mat-list-item *ngFor="let c of categories">
+      <mat-icon fontIcon="category">{{ c.title }}</mat-icon
+      >{{ c.title }}
+     <div>{{ c.title }}</div>
+      <div>{{ c.description }}</div>
+    </mat-list-item>
+
+    <mat-divider></mat-divider>
+  </mat-list>
+</mat-card> -->
+
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5">
+        <mat-card>
+          <mat-action-list>
+            <h1 class="ml20" mat-subheader>All categories</h1>
+            <mat-list-item
+              *ngFor="let category of categories"
+              class="mt20"
+              [routerLink]="'/admin/categories/' + category.cid"
+            >
+              <mat-icon matListItemIcon>category</mat-icon>
+              <div matListItemTitle>{{ category.title }}</div>
+              <div matListItemLine>{{ category.description }}</div>
+              <mat-divider></mat-divider>
+              <span matListItemLine>
+                <button
+                  matListItemLine
+                  mat-raised-button
+                  color="accent"
+                  class="ml10 mb10"
+                  [routerLink]="'/admin/update-category/' + category.cid"
+                >
+                  Update
+                </button>
+                <button
+                  mat-icon-button
+                  color="warn"
+                  class="ml10 mt10"
+                  (click)="deleteCategory(category.cid, category.title)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </span>
+            </mat-list-item>
+          </mat-action-list>
+          <div class="container text-center mt20 mb20">
+            <button
+              routerLink="/admin/add-category"
+              mat-raised-button
+              color="primary"
+            >
+              Add category
+            </button>
+          </div>
+          <div></div>
+        </mat-card>
+      </div>
+      <div class="col-md-7">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="bootstrap-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mt20">
+        <mat-card>
+          <mat-card-header class="ml20">
+            <mat-card-title>
+              Read the instructions of this page carefully
+            </mat-card-title>
+            <mat-card-subtitle> One more step to go </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="mt20 ml20">
+            <h1>
+              Quiz : <b>{{ quiz.title }}</b>
+            </h1>
+            <p>{{ quiz.description }}</p>
+            <mat-divider></mat-divider>
+            <br />
+            <h1>Important Instructions</h1>
+            <ul>
+              <li>This quiz is only for practise purpose.</li>
+              <li>
+                You have to submit quiz within
+                <b>{{ quiz.numberOfQuestions * 2 }} minutes.</b>
+              </li>
+              <li>You can attempt the quiz any number of times.</li>
+              <li>
+                Each question carries
+                <b>{{ quiz.maxMarks / quiz.numberOfQuestions }} marks.</b>
+              </li>
+              <li>No negative marking for wrong ones.</li>
+              <li>All questions is of MCQ Types.</li>
+            </ul>
+
+            <mat-divider> </mat-divider>
+            <br />
+            <h1>Attempting Quiz</h1>
+            <ul>
+              <li>CLick <b>Start Quiz</b> to start the quiz.</li>
+              <li>
+                The timer will start the moment you click on
+                <b>Start Quiz</b> button.
+              </li>
+              <li>
+                You cannot resume this quiz, if interrupted due to any reason.
+              </li>
+              <li>
+                Click on <b>Submit Quiz</b> button on completion of the quiz.
+              </li>
+              <li>
+                All questions are in single page, Scroll down to access all
+                questions
+              </li>
+              <li>
+                Report of the test is automatically genarated after quiz ends &
+                You can also download it in PDF format
+              </li>
+            </ul>
+            <mat-divider> </mat-divider>
+          </mat-card-content>
+          <div class="text-center mt10 mb10">
+            <button mat-raised-button color="accent" (click)="startQuiz()">
+              Start Quiz
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              class="ml20"
+              [routerLink]="'/user-dashboard/' + quiz.category.cid"
+            >
+              BACK
+            </button>
+          </div>
+        </mat-card>
+      </div>
+      <div class="col-md-4">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
